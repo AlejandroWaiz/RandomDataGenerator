@@ -2,6 +2,7 @@ package firestore_adapter
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -25,6 +26,7 @@ func (f *Firestore_adapter) GetRandomEventCard() error {
 	rand.Seed(time.Now().UnixNano())
 
 	chosenCard := rand.Intn(dataCount)
+	log.Println(chosenCard)
 
 	return nil
 }
