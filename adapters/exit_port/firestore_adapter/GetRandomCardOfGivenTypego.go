@@ -21,7 +21,7 @@ func (f *Firestore_adapter) GetRandomEventCard() error {
 	dataCount, err := f.GetCountOfDataFromFirestore(query, countName)
 
 	if err != nil {
-		return fmt.Errorf("[GetRandomCardOfGivenType] func => %v")
+		return fmt.Errorf("[GetRandomCardOfGivenType] func => %v", err)
 	}
 
 	rand.Seed(time.Now().UnixNano())
@@ -29,9 +29,6 @@ func (f *Firestore_adapter) GetRandomEventCard() error {
 	chosenCard := rand.Intn(dataCount)
 
 	log.Println(chosenCard)
-
-	//TODO: Agregar TODAS las cartas con un id unico con el siguiente metodo.
-	//result, err := f.client.Collection(os.Getenv("Pokemon_Collection_Name")).NewDoc().Set()
 
 	return nil
 }
