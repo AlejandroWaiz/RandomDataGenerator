@@ -6,7 +6,7 @@ type ExitPort struct {
 }
 
 type ExitPort_Interface interface {
-	GetRandomEventCard() error
+	GetRandomEventCard(collection, condition, operator, neededValue string) error
 }
 
 func GetExitPortImplementation() ExitPort_Interface {

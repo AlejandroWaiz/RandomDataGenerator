@@ -3,6 +3,7 @@ package firestore_adapter
 import (
 	"context"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 
@@ -19,15 +20,19 @@ func GetFirestoreAdapterImplementation() Firestore_adapter {
 	return Firestore_adapter{}
 }
 
-func (i *Firestore_adapter) GetCountOfDataFromFirestore(originalMap map[string]interface{}, countName string) (int, error) {
+func (f *Firestore_adapter) getCountOfDataFromFirestore() (int, error) {
 
-	mapCopy := make(map[string]interface{})
+	countName := "Event_Count"
 
-	for k, v := range originalMap {
-		mapCopy[k] = v
+	query, err := f.client.Collection(os.Getenv("Pokemon_Collection_Name")).NewAggregationQuery().WithCount(countName).Get(f.ctx)
+
+	queryCopy := make(map[string]interface{})
+
+	for k, v := range query {
+		queryCopy[k] = v
 	}
 
-	queryValue := mapCopy[countName]
+	queryValue := queryCopy[countName]
 
 	value := strings.Split(fmt.Sprint(queryValue), ":")
 

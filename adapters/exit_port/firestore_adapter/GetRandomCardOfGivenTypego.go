@@ -1,34 +1,40 @@
 package firestore_adapter
 
 import (
-	"fmt"
+	"context"
 	"log"
-	"math/rand"
-	"os"
-	"time"
+
+	"cloud.google.com/go/firestore"
+	"google.golang.org/api/iterator"
 )
 
-func (f *Firestore_adapter) GetRandomEventCard() error {
+func (f *Firestore_adapter) GetRandomEventCard(collection, condition, operator, neededValue string) error {
 
-	countName := "Event_Count"
+	ctx := context.Background()
 
-	query, err := f.client.Collection(os.Getenv("Pokemon_Collection_Name")).NewAggregationQuery().WithCount(countName).Get(f.ctx)
+	err := f.client.RunTransaction(ctx, func(ctx context.Context, tx *firestore.Transaction) error {
+
+		docs := f.client.Collection(collection).Where(condition, operator, neededValue).Documents(f.ctx)
+
+		for {
+			d, err := docs.Next()
+
+			if err != nil {
+				if err == iterator.Done {
+					break
+				}
+				//handle error
+			}
+
+			log.Println(d)
+			//do something with the document
+		}
+		return nil
+	})
 
 	if err != nil {
-		return fmt.Errorf("[GetRandomCardOfType] error:%v", err)
+		return err
 	}
-
-	dataCount, err := f.GetCountOfDataFromFirestore(query, countName)
-
-	if err != nil {
-		return fmt.Errorf("[GetRandomCardOfGivenType] func => %v", err)
-	}
-
-	rand.Seed(time.Now().UnixNano())
-
-	chosenCard := rand.Intn(dataCount)
-
-	log.Println(chosenCard)
 
 	return nil
 }
