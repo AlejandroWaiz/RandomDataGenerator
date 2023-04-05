@@ -9,7 +9,9 @@ todo:
 -> Hacer un modelo de como se almacenarán los datos de las cartas en firestore
     -> JSON de ejemplo de cada carta
 
-
-
+-> Actualizar la cloud function que almacena cartas de tipo POKEMON añadiendo metodos para cada tipo de carta
+    -> Crear y guardar cartas
+    --> Actualmente existe la CF en local, falta actualizar el .env para incluir las otras cartas (Para pokemons está listo).
+    
 
 
