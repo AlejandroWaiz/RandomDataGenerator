@@ -16,6 +16,7 @@ import (
 // additional information regarding Pub/Sub events.
 type PubSubMessage struct {
 	Data []byte `json:"data"`
+	Attributes map[string]string `json:"attributes"`
 }
 
 // HelloPubSub consumes a Pub/Sub message.
