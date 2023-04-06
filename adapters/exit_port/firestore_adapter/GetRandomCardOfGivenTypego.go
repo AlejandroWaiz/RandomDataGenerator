@@ -8,7 +8,7 @@ import (
 	"google.golang.org/api/iterator"
 )
 
-func (f *Firestore_adapter) GetRandomEventCard(collection, condition, operator, neededValue string) error {
+func (f *Firestore_Adapter_Implementation) GetRandomEventCard(collection, condition, operator, neededValue string) error {
 
 	ctx := context.Background()
 

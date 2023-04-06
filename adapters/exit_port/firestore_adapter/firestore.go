@@ -10,17 +10,17 @@ import (
 	"cloud.google.com/go/firestore"
 )
 
-type Firestore_adapter struct {
+type Firestore_Adapter_Implementation struct {
 	client    *firestore.Client
 	ctx       context.Context
 	projectID string
 }
 
-func GetFirestoreAdapterImplementation() Firestore_adapter {
-	return Firestore_adapter{}
+func GetFirestoreAdapterImplementation() Firestore_Adapter_Implementation {
+	return Firestore_Adapter_Implementation{}
 }
 
-func (f *Firestore_adapter) getCountOfDataFromFirestore() (int, error) {
+func (f *Firestore_Adapter_Implementation) getCountOfDataFromFirestore() (int, error) {
 
 	countName := "Event_Count"
 
