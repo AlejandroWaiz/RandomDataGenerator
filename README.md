@@ -19,7 +19,8 @@ todo:
 
 v1.0 
 
- Trigger de la funcion mediante mensaje de pubsub <----> Adaptadores de entrada (Pubsub) que recibirá el mensaje y lo enviará a un coordinador <---> Coordinar que recibe el mensaje y lo manda al adaptador que busca la información  <---> Adaptador de busqueda de información que busca y devuelve lo solicitado
+ Trigger de la funcion mediante mensaje de pubsub <----> Adaptadores de entrada (Pubsub) que recibirá el mensaje y lo enviará a un coordinador <---> Coordinar que recibe el mensaje y lo manda al adaptador 
+ que busca la información  <---> Adaptador de busqueda de información que busca y devuelve lo solicitado
 
  v1.1 
 
